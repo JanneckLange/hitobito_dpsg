@@ -38,6 +38,10 @@ module HitobitoDpsg
       # Prepend the DPSG controller extension before pfadi_de's extension so that
       # autosubmit and beitragspflichtig create logic is handled first in the MRO.
       RolesController.prepend Dpsg::RolesController
+
+        # Prepend the DPSG decorator extension to prevent Group::Mitglieder from being
+        # set as the primary group. Membership roles must not be primary roles.
+        ::GroupDecorator.prepend Dpsg::GroupDecorator
     end
 
     initializer "dpsg.add_settings" do |_app|
