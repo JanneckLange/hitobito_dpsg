@@ -25,6 +25,16 @@ module HitobitoDpsg
       # gets the class_attribute, validations, and callbacks defined in Dpsg::Role.
       Role.include Dpsg::Role
 
+      # Mark the five Stufenrollen as beitragspflichtig AFTER the concern is included,
+      # because pfadi_de's config.to_prepare loads the group models early via
+      # Group.include PfadiDe::Group, before dpsg's config.to_prepare runs.
+      # Setting the flag here (not in the class bodies) avoids the NoMethodError.
+      Group::Bibergruppe::Mitglied.beitragspflichtig = true
+      Group::Woelflingsmeute::Woelfling.beitragspflichtig = true
+      Group::Jungpfadfindertrupp::Jungpfadfinder.beitragspflichtig = true
+      Group::Pfadfindertrupp::Pfadfinder.beitragspflichtig = true
+      Group::Roverrunde::Rover.beitragspflichtig = true
+
       # Prepend the DPSG controller extension before pfadi_de's extension so that
       # autosubmit and beitragspflichtig create logic is handled first in the MRO.
       RolesController.prepend Dpsg::RolesController

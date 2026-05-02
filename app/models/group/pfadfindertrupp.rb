@@ -20,7 +20,6 @@ class Group::Pfadfindertrupp < ::Group
 
   class Pfadfinder < ::Role
     self.permissions = []
-    self.beitragspflichtig = true
   end
 
   roles TruppsprecherIn,
