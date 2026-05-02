@@ -17,5 +17,4 @@
       = f.labeled(:mitgliedschaft_role_type) do
         = f.select :mitgliedschaft_role_type,
                    mitglieder_role_type_options.map { |t| [t.model_name.human, t.sti_name] },
-                   { selected: selected, include_blank: t("global.please_select") },
-                   class: "form-select form-select-sm col-6"
+                 { selected: selected, include_blank: t("views.please_select") },
