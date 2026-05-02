@@ -8,12 +8,14 @@
 - # The dropdown is rendered inside a turbo frame for dynamic updates when the role type changes.
 - # pfadi_de's _type_fields_pfadi_de.html.haml already adds the autosubmit hidden field.
 
-- if entry.class.beitragspflichtig
-  = turbo_frame_tag :role_mitgliedschaft_type, target: :_top do
-    - selected = entry.mitgliedschaft_role_type
-    - selected ||= Dpsg::MembershipRoleResolver.new(entry.group).active_mitglieder_role(entry.person)&.type if entry.person&.persisted?
-    = f.labeled(:mitgliedschaft_role_type) do
-      = f.select :mitgliedschaft_role_type,
-                 mitglieder_role_type_options.map { |t| [t.model_name.human, t.sti_name] },
-                 { selected: selected, include_blank: t("global.please_select") },
-                 class: "form-select form-select-sm col-6"
+- if entry.type.present?
+  - role_class = entry.type.constantize rescue nil
+  - if role_class && role_class.beitragspflichtig
+    = turbo_frame_tag :role_mitgliedschaft_type, target: :_top do
+      - selected = entry.mitgliedschaft_role_type
+      - selected ||= Dpsg::MembershipRoleResolver.new(entry.group).active_mitglieder_role(entry.person)&.type if entry.person&.persisted?
+      = f.labeled(:mitgliedschaft_role_type) do
+        = f.select :mitgliedschaft_role_type,
+                   mitglieder_role_type_options.map { |t| [t.model_name.human, t.sti_name] },
+                   { selected: selected, include_blank: t("global.please_select") },
+                   class: "form-select form-select-sm col-6"
