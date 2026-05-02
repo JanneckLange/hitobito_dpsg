@@ -17,11 +17,17 @@ module HitobitoDpsg
       #{config.root}/app/abilities
       #{config.root}/app/domain
       #{config.root}/app/jobs
+      #{config.root}/app/models
     ]
 
     config.to_prepare do
-      # extend application classes here
-      # Group.include Dpsg::Group
+      # Include the beitragspflichtig concern into all role types so that every role class
+      # gets the class_attribute, validations, and callbacks defined in Dpsg::Role.
+      Role.include Dpsg::Role
+
+      # Prepend the DPSG controller extension before pfadi_de's extension so that
+      # autosubmit and beitragspflichtig create logic is handled first in the MRO.
+      RolesController.prepend Dpsg::RolesController
     end
 
     initializer "dpsg.add_settings" do |_app|

@@ -10,6 +10,7 @@ class Group::Bibergruppe < ::Group
 
   class Mitglied < ::Role
     self.permissions = []
+    self.beitragspflichtig = true
   end
 
   roles Mitglied

@@ -20,6 +20,7 @@ class Group::Woelflingsmeute < ::Group
 
   class Woelfling < ::Role
     self.permissions = []
+    self.beitragspflichtig = true
   end
 
   roles Leitwoelfling,

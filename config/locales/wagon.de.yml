@@ -908,3 +908,21 @@ de:
       group/roverrunde/rover:
         one: Rover*in
         description: Rover*in
+
+    attributes:
+      role:
+        mitgliedschaft_role_type: Mitgliedschaft
+
+    errors:
+      models:
+        role:
+          attributes:
+            mitgliedschaft_role_type:
+              blank: muss bei beitragspflichtigen Rollen ausgewählt werden
+            base:
+              single_mitglieder_role_per_person:
+                Diese Person hat bereits eine aktive
+                Mitgliedschaft. Pro Person ist nur eine aktive Mitgliedschaft erlaubt.
+              protected_by_beitragspflichtig_role:
+                Die Mitgliedschaft kann nicht entfernt
+                werden, solange eine beitragspflichtige Rolle aktiv ist.
