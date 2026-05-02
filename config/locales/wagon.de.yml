@@ -908,3 +908,12 @@ de:
       group/roverrunde/rover:
         one: Rover*in
         description: Rover*in
+
+    errors:
+      models:
+        role:
+          attributes:
+            base:
+              missing_mitglieder_role_for_beitragspflichtig:
+                Beitragspflichtige Rollen koennen nur vergeben werden, wenn die Person
+                bereits eine aktive Rolle in der Gruppe Mitglieder hat.

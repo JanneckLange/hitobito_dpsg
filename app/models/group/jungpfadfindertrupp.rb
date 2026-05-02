@@ -20,6 +20,7 @@ class Group::Jungpfadfindertrupp < ::Group
 
   class Jungpfadfinder < ::Role
     self.permissions = []
+    self.beitragspflichtig = true
   end
 
   roles SippensprecherIn,

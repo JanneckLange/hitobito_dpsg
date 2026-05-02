@@ -20,8 +20,11 @@ module HitobitoDpsg
     ]
 
     config.to_prepare do
-      # extend application classes here
-      # Group.include Dpsg::Group
+      # Add dpsg-specific role rules for beitragspflichtig handling.
+      Role.include Dpsg::Role
+
+      # Add helper methods for fee/beitragspflichtig labels in role select UI.
+      RolesHelper.include Dpsg::RolesHelper
     end
 
     initializer "dpsg.add_settings" do |_app|
