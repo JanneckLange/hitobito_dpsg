@@ -5,10 +5,11 @@
 
 - # This partial is rendered via render_extensions :type_fields in hitobito's roles/_fields.html.haml.
 - # It adds the "Mitgliedschaft" dropdown for beitragspflichtig roles.
-- # pfadi_de's _type_fields_pfadi_de.html.haml already adds the autosubmit hidden field,
-- # so we only need the turbo frame here.
-= turbo_frame_tag :role_mitgliedschaft_type, target: :_top do
-  - if entry.class.beitragspflichtig
+- # The dropdown is rendered inside a turbo frame for dynamic updates when the role type changes.
+- # pfadi_de's _type_fields_pfadi_de.html.haml already adds the autosubmit hidden field.
+
+- if entry.class.beitragspflichtig
+  = turbo_frame_tag :role_mitgliedschaft_type, target: :_top do
     - selected = entry.mitgliedschaft_role_type
     - selected ||= Dpsg::MembershipRoleResolver.new(entry.group).active_mitglieder_role(entry.person)&.type if entry.person&.persisted?
     = f.labeled(:mitgliedschaft_role_type) do
