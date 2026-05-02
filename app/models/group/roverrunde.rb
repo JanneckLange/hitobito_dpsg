@@ -20,7 +20,6 @@ class Group::Roverrunde < ::Group
 
   class Rover < ::Role
     self.permissions = []
-    self.beitragspflichtig = true
   end
 
   roles Rundensprecher,

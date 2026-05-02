@@ -23,6 +23,13 @@ module HitobitoDpsg
       # Add dpsg-specific role rules for beitragspflichtig handling.
       Role.include Dpsg::Role
 
+      # Set after concern include to avoid load-order issues during class loading.
+      Group::Bibergruppe::Mitglied.beitragspflichtig = true
+      Group::Woelflingsmeute::Woelfling.beitragspflichtig = true
+      Group::Jungpfadfindertrupp::Jungpfadfinder.beitragspflichtig = true
+      Group::Pfadfindertrupp::Pfadfinder.beitragspflichtig = true
+      Group::Roverrunde::Rover.beitragspflichtig = true
+
       # Add helper methods for fee/beitragspflichtig labels in role select UI.
       RolesHelper.include Dpsg::RolesHelper
     end
