@@ -926,3 +926,6 @@ de:
               protected_by_beitragspflichtig_role:
                 Die Mitgliedschaft kann nicht entfernt
                 werden, solange eine beitragspflichtige Rolle aktiv ist.
+
+  views:
+    please_select: Bitte auswählen
