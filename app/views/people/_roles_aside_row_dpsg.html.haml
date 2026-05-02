@@ -3,8 +3,4 @@
 -#  or later. See the COPYING file at the top-level directory or at
 -#  https://github.com/hitobito/hitobito_dpsg.
 
-- fee_kind_role = role.respond_to?(:fee_kind_type?) && role.fee_kind_type?
-- beitragspflichtig_role = role.respond_to?(:beitragspflichtig_type?) && role.beitragspflichtig_type?
-- show_fee_icon = fee_kind_role || beitragspflichtig_role
-- if show_fee_icon
-  %td= link_action_change_fee_kind(role)
+%td= link_action_change_fee_kind(role) if (role.respond_to?(:fee_kind_type?) && role.fee_kind_type?) || (role.respond_to?(:beitragspflichtig_type?) && role.beitragspflichtig_type?)
